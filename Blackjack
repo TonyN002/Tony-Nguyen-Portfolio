@@ -296,3 +296,52 @@ def get_hand_value(cards):
         sum_rank += 1
 
     return sum_rank
+
+# Hand Value Test Cases
+
+# Test 1 - no aces
+test_hand = [('2', CLUBS), ('4', DIAMONDS), ('K', DIAMONDS),
+             ('3', SPADES)]
+assert get_hand_value(test_hand) == 19
+
+# Test 2 - Two cards where one card is an ace that counts as 11.
+test_hand = [('10', SPADES), ('A', HEARTS)]
+assert get_hand_value(test_hand) == 21
+
+# Test 3 - multiple cards with an ace that must count as 1.
+test_hand = [('5', SPADES), ('A', HEARTS), ('7', HEARTS),
+             ('8', DIAMONDS)]
+assert get_hand_value(test_hand) == 21
+
+# Test 4 - 4 aces with other cards.
+test_hand = [('A', SPADES), ('A', HEARTS), ('A', DIAMONDS),
+             ('A', CLUBS), ('K', SPADES), ('7', CLUBS)]
+assert get_hand_value(test_hand) == 21
+
+# Test 5 - 2 aces.
+test_hand = [('A', SPADES), ('A', HEARTS)]
+assert get_hand_value(test_hand) == 12
+
+# Test 6 - 3 aces.
+test_hand = [('A', SPADES), ('A', HEARTS), ('A', DIAMONDS)]
+assert get_hand_value(test_hand) == 13
+
+# Test 7 - 4 aces with no other cards.
+test_hand = [('A', SPADES), ('A', HEARTS), ('A', DIAMONDS),
+             ('A', CLUBS)]
+assert get_hand_value(test_hand) == 14
+
+# Test 7 - 1 ace with other cards.
+test_hand = [('6', SPADES), ('A', HEARTS), ('3', DIAMONDS),
+             ('J', CLUBS)]
+assert get_hand_value(test_hand) == 20
+
+# Test 7 - 2 ace with other cards.
+test_hand = [('6', SPADES), ('A', HEARTS), ('3', DIAMONDS),
+             ('J', CLUBS), ('A', DIAMONDS)]
+assert get_hand_value(test_hand) == 21
+
+# Test 7 - 2 ace with other cards and a bust.
+test_hand = [('6', SPADES), ('2', HEARTS), ('A', DIAMONDS),
+             ('J', CLUBS), ('3', DIAMONDS)]
+assert get_hand_value(test_hand) == 22
