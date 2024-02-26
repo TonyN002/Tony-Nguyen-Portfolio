@@ -391,3 +391,51 @@ def get_game_outcome(player_hand, dealer_hand):
 
     else:
       return "You lose!"
+    
+# TEST 1 - No Blackjack. Player loses to dealer.
+test_player_hand = [('10', SPADES), ('7', HEARTS)]
+test_dealer_hand = [('2', CLUBS), ('4', DIAMONDS), ('K', DIAMONDS),
+                    ('3', SPADES)]
+assert get_game_outcome(test_player_hand,
+                        test_dealer_hand) == 'You lose!'
+
+# TEST 2  - Blackjack. Player wins. Dealer does not have Blackjack.
+test_player_hand = [('10', SPADES), ('A', HEARTS)]
+test_dealer_hand = [('7', CLUBS), ('K', DIAMONDS)]
+assert get_game_outcome(test_player_hand,
+                        test_dealer_hand) == 'Blackjack! You win!'
+
+# TEST 3 - No Blackjack. Player wins with 21 over dealer score of 20.
+test_player_hand = [('5', SPADES), ('A', HEARTS), ('7', HEARTS),
+                    ('8', DIAMONDS)]
+test_dealer_hand = [('7', CLUBS), ('4', DIAMONDS), ('9', DIAMONDS)]
+assert get_game_outcome(test_player_hand, test_dealer_hand) == 'You win!'
+
+# TEST 4 - Player has Blackjack. But so does dealer. It's a tie.
+test_player_hand = [('A', HEARTS), ('10', DIAMONDS)]
+test_dealer_hand = [('K', CLUBS), ('A', DIAMONDS)]
+assert get_game_outcome(test_player_hand, test_dealer_hand) == "It's a tie."
+
+# TEST 5  - Dealer busts. Player wins. Player does not have Blackjack.
+test_player_hand = [('6', SPADES), ('A', HEARTS)]
+test_dealer_hand = [('6', CLUBS), ('K', DIAMONDS), ('K', CLUBS)]
+assert get_game_outcome(test_player_hand,
+                        test_dealer_hand) == "Dealer busts. You win!"
+
+# TEST 6  - Blackjack. Dealer wins. Player does not have Blackjack.
+test_player_hand = [('6', SPADES), ('A', HEARTS)]
+test_dealer_hand = [('A', CLUBS), ('K', DIAMONDS)]
+assert get_game_outcome(test_player_hand,
+                        test_dealer_hand) == "Dealer has Blackjack! You lose!"
+
+# TEST 7  - Player busts. Dealer wins. Neither have Blackjack.
+test_player_hand = [('6', SPADES), ('K', HEARTS), ('6', CLUBS)]
+test_dealer_hand = [('K', CLUBS), ('K', DIAMONDS)]
+assert get_game_outcome(test_player_hand,
+                        test_dealer_hand) == "Bust. You lose!"
+
+# TEST 8  - Player has 21. Dealer wins with Blackjack.
+test_player_hand = [('2', SPADES), ('10', HEARTS), ('9', CLUBS)]
+test_dealer_hand = [('A', CLUBS), ('K', DIAMONDS)]
+assert get_game_outcome(test_player_hand,
+                        test_dealer_hand) == "Dealer has Blackjack! You lose!"
