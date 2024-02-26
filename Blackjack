@@ -56,3 +56,35 @@ def display_cards(cards):
     # Print each row of the cards on the screen:
     for row in rows:
         print(row)
+
+def display_hands(player_hand, dealer_hand, show_dealer_hand):
+    """
+    Show the player's and dealer's cards. Hide the dealer's first
+    card if show_dealer_hand is False. Otherwise, show the dealer's
+    first card if show_dealer_hand is True.
+
+    Parameters:
+        player_hand (list): the list of cards in the player's hand.
+        dealer_hand (list): the list of cards in the dealer's hand.
+        show_dealer_hand (bool): boolean denoting whether to show the
+                                   dealer's first card face-up.
+
+    Examples:
+       See Section 2.4.4.2, Test #1 for an example
+         that shows the dealer's first card face-up.
+    """
+
+    print()
+    if show_dealer_hand:
+        print('DEALER:', get_hand_value(dealer_hand))
+        display_cards(dealer_hand)
+    else:
+        print('DEALER: ???')
+        # Hide the dealer's first card:
+        display_cards([BACKSIDE] + dealer_hand[1:])
+
+    # Show the player's cards:
+    print()
+    print('PLAYER:', get_hand_value(player_hand))
+    display_cards(player_hand)
+    print('\n')
