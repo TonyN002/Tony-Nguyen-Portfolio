@@ -8,3 +8,51 @@ SPADES = chr(9824)      # Character 9824 is '♠'.
 
 BACKSIDE = 'backside'   # Used to print back of dealer's card.
 
+def display_cards(cards):
+    """
+    Display all the cards in the cards list.
+    The parameter cards will represent a player
+    or dealer's hand.
+
+    This function is called by the display_hands() function.
+
+    Parameters:
+        cards (list): the list of cards to display
+
+    Example:
+        See See Section 2.4.4.2, Test #1 for an example.
+        Each of row of cards - one row for the Dealer and
+        one row for the Player - are shown using
+        this display_cards() function.
+    """
+
+    # The text to display on each row.
+    rows = ['', '', '', '', '', '', '']
+
+    for card in cards:
+        # Print the top line of the card.
+        rows[0] += ' ________   '
+
+        if card == BACKSIDE:
+            # Print a card's back:
+            rows[1] += '| ##     |  '
+            rows[2] += '|        |  '
+            rows[3] += '|  ###   |  '
+            rows[4] += '|        |  '
+            rows[5] += '|    ##  |  '
+            rows[6] += '|________|  '
+        else:
+            # Print the card's front.
+            # The card is a list data structure of length 2
+            # that consists of a rank and a suit.
+            rank, suit = card
+            rows[1] += '| {}     |  '.format(rank.ljust(2))
+            rows[2] += '|        |  '
+            rows[3] += '|   {}   |  '.format(suit.ljust(2))
+            rows[4] += '|        |  '
+            rows[5] += '|     {} |  '.format(rank.rjust(2))
+            rows[6] += '|________|  '
+
+    # Print each row of the cards on the screen:
+    for row in rows:
+        print(row)
